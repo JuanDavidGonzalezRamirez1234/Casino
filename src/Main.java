@@ -36,16 +36,19 @@ class CasinoGame {
 
     public void jugar() {
         Random random = new Random();
-        int resultado = random.nextInt(3) + 1; // Genera un número entre 1 y 3
+        int resultado = random.nextInt(3) + 1;
+        System.out.println("Numero Generado: "+ resultado);
+
+
 
         switch (resultado) {
             case 1:
                 dinero *= 2;
-                System.out.println("¡Ganaste! Tu dinero ahora es: " + dinero);
+                System.out.println("Ganaste dinero: " + dinero);
                 break;
             case 2:
                 dinero /= 2;
-                System.out.println("Perdiste la mitad. Tu dinero ahora es: " + dinero);
+                System.out.println("Perdiste la mitad: " + dinero);
                 break;
             case 3:
                 dinero = 0;
