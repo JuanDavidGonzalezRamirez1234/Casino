@@ -1,25 +1,56 @@
-import javax.swing.JOptionPane;
-        import java.util.Random;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner Teclado =  new Scanner(System.in);
-        int dinero;
+        Scanner teclado = new Scanner(System.in);
+        double dinero;
 
-        System.out.println("ingrese su dinero");
-        dinero = Teclado.nextInt();
+        System.out.println("Ingrese su dinero:");
+        dinero = teclado.nextDouble();
 
-        
+        CasinoGame juego = new CasinoGame(dinero);
+        boolean seguirJugando = true;
 
+        while (seguirJugando) {
+            juego.jugar();
 
+            System.out.println("¿Quieres jugar otra vez? (1: Sí, 2: No)");
+            int opcion = teclado.nextInt();
 
+            if (opcion != 1) {
+                seguirJugando = false;
+            }
+        }
 
+        teclado.close();
+    }
+}
 
+class CasinoGame {
+    private double dinero;
 
+    public CasinoGame(double dineroInicial) {
+        this.dinero = dineroInicial;
+    }
 
+    public void jugar() {
+        Random random = new Random();
+        int resultado = random.nextInt(3) + 1; // Genera un número entre 1 y 3
 
-
-
+        switch (resultado) {
+            case 1:
+                dinero *= 2;
+                System.out.println("¡Ganaste! Tu dinero ahora es: " + dinero);
+                break;
+            case 2:
+                dinero /= 2;
+                System.out.println("Perdiste la mitad. Tu dinero ahora es: " + dinero);
+                break;
+            case 3:
+                dinero = 0;
+                System.out.println("Perdiste todo. Tu dinero ahora es: " + dinero);
+                break;
+        }
     }
 }
